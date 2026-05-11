@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Bienvenida</title>
+
+<style>
+body{
+    font-family:'Baloo 2', cursive;
+    background:#eef2ff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.contenedor{
+    background:white;
+    padding:40px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 8px 25px rgba(0,0,0,0.2);
+}
+
+img{
+    width:120px;
+    border-radius:50%;
+    margin-bottom:10px;
+}
+
+/* ⭐ ESTRELLAS */
+.estrellas{
+    margin:15px 0;
+}
+
+.estrella{
+    font-size:30px;
+    margin:0 5px;
+    display:inline-block;
+}
+
+/* ⭐ ANIMACIONES DIFERENTES */
+.estrella1{
+    animation: flotar1 2s infinite;
+}
+
+.estrella2{
+    animation: flotar2 2.5s infinite;
+}
+
+.estrella3{
+    animation: flotar3 3s infinite;
+}
+
+@keyframes flotar1{
+    0%{ transform:translateY(0);}
+    50%{ transform:translateY(-10px);}
+    100%{ transform:translateY(0);}
+}
+
+@keyframes flotar2{
+    0%{ transform:translateY(0) rotate(0);}
+    50%{ transform:translateY(-8px) rotate(10deg);}
+    100%{ transform:translateY(0) rotate(0);}
+}
+
+@keyframes flotar3{
+    0%{ transform:scale(1);}
+    50%{ transform:scale(1.2);}
+    100%{ transform:scale(1);}
+}
+
+/* BOTÓN */
+button{
+    margin-top:20px;
+    padding:12px 25px;
+    font-size:18px;
+    background:#4a6cf7;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#3a55d1;
+    transform:scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <h1 id="mensaje"></h1>
+        <img id="avatar">
+
+        <!-- ⭐ ESTRELLAS -->
+        <div class="estrellas">
+            <span class="estrella estrella1">⭐</span>
+            <span class="estrella estrella2">⭐</span>
+            <span class="estrella estrella3">⭐</span>
+        </div>
+
+        <!-- BOTÓN -->
+        <button onclick="irJuego()">Comenzar juego</button>
+
+    </div>
+
+    <script>
+    let nombre = localStorage.getItem("nombre");
+    let avatar = localStorage.getItem("avatar");
+
+    document.getElementById("mensaje").innerText =
+        "Bienvenido " + nombre;
+
+    document.getElementById("avatar").src = avatar;
+
+    // voz bienvenida
+    let msg = new SpeechSynthesisUtterance(
+        "Bienvenido " + nombre + ", estás listo para aprender"
+    );
+    msg.lang="es-ES";
+    speechSynthesis.speak(msg);
+
+    // botón
+    function irJuego(){
+        window.location.href = "juego1.html"; // cambia por tu archivo real
+    }
+    </script>
+
+</body>
+</html>
